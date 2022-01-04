@@ -8,7 +8,7 @@
         <div class="hidden" data-currency-mask-target="locale"><%= current_user.preferred_language %></div>
           <% if current_user.preferred_language == "en" %>
             <div class="col-span-6">
-              <%= form.label :balance, t("ridings.balance"), class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+              <%= form.label :balance, t("ridings.bank_balance"), class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
               
               <div class="mt-1 relative rounded-md shadow-sm col-span-3">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -27,7 +27,7 @@
             </div>
           <% else %>
             <div class="col-span-6">
-              <%= form.label :balance, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+              <%= form.label :balance, t("ridings.bank_balance"), class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
               <div class="mt-1 relative rounded-md shadow-sm col-span-3">
                 <%= form.text_field :balance, class:"focus:ring-brand focus:border-brand block w-full pr-12 sm:text-sm border-gray-300 rounded-md currency-input-mask dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300", placeholder:"0,00" %>
 
@@ -43,9 +43,9 @@
       </div>
 
       <div class="mt-6 form-group py-3 text-right">
-        <%= link_to "Cancel", "#", class:"inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand dark:text-dark-gray-300 dark:focus:ring-brand-dark dark:ring-offset-dark-gray-900 dark:hover:bg-dark-gray-700", data:{action:"click->modal#close"} %>
+        <%= link_to t("general.cancel"), "#", class:"inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand dark:text-dark-gray-300 dark:focus:ring-brand-dark dark:ring-offset-dark-gray-900 dark:hover:bg-dark-gray-700", data:{action:"click->modal#close"} %>
 
-        <%= form.submit "Update", class:"ml-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-brand-medium ring-brand dark:bg-brand-dark dark:text-dark-gray-300 dark:focus:ring-brand-dark dark:hover:bg-brand-medium" %>
+        <%= form.submit t("general.update"), class:"ml-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-brand-medium ring-brand dark:bg-brand-dark dark:text-dark-gray-300 dark:focus:ring-brand-dark dark:hover:bg-brand-medium" %>
       </div>
   </div>
 <% end %>

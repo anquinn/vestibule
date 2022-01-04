@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   def index
     # authorize :report, :index?
-    @riding_reports = policy_scope(RidingExternalReport).includes(:riding).order("ridings.riding_code asc")
+    @pagy, @riding_reports = pagy(policy_scope(RidingExternalReport).includes(:riding).order("ridings.riding_code asc"), items: 50)
     authorize :report, :index?
   end
 

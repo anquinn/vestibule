@@ -98,3 +98,5 @@ gem "friendly_id", "~> 5.4"
 gem "money-rails", "~> 1.15"
 
 gem "pretender", "~> 0.3.4"
+
+gem "pagy", "~> 5.6"
