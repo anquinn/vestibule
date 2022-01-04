@@ -1,0 +1,81 @@
+<% content_for :page_title do %>
+	Regional Field Report
+<% end %>
+
+<div class="flex flex-col mt-6">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="w-64 mb-6">
+          <%= label_tag "region", "Region", class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= select_tag 'region', options_for_select(["Canada", "Atlantic", "Quebec", "Ontario", "Praries", "North", "BC"]), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand focus:border-brand sm:text-sm rounded dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+        
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg dark:border-dark-gray-600">
+
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-gray-600">
+          <thead class="bg-gray-50 dark:bg-dark-gray-700">
+            <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= sort_link_to t("general.riding_code"), :riding_code, class: "table-cell pr-4", data: { turbo_action: "advance" } %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= sort_link_to t("general.riding"), :name_en, class: "table-cell pr-4", data: { turbo_action: "advance" } %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= t("general.region") %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap dark:text-dark-gray-300">
+                <%= t("riding.attempts") %> Last 7
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap dark:text-dark-gray-300">
+                <%= t("reports.sign_ups") %>
+              </th>
+
+              <% 13.times do |i| %>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap dark:text-dark-gray-300">
+                  <%= l(Date.current-(i+1), format:'%b %e') %>
+                </th>
+              <% end %>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <% @ridings.each do |riding| %>
+
+            <% if cycle('odd', 'even') == 'odd' %>
+              <tr class="bg-white dark:bg-dark-gray-800">
+            <% else %>
+              <tr class="bg-gray-50 dark:bg-dark-gray-700">
+            <% end %>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                <%= link_to riding.riding_code, riding %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                <%= link_to riding.name, riding %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-dark-gray-400">
+                <%= riding.region %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center dark:text-dark-gray-400">
+                <%= rand(0..24) %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center dark:text-dark-gray-400">
+                <%= rand(0..24) %>
+              </td>
+
+              <% 13.times do |i| %>
+                <% number = rand(0..24) %>
+                <td class="px-6 py-4 text-sm text-center border dark:border-dark-gray-800 <%= color_range(number) %>">
+                  <%= number %>
+                </td>
+              <% end %>
+            </tr>
+
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

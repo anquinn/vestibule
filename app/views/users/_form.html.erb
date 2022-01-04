@@ -1,0 +1,108 @@
+
+<%= form_with(model: user) do |form| %>
+
+  <%= render "shared/error_messages", resource: user %>
+
+  <div class="shadow overflow-hidden sm:rounded-md">
+    <div class="px-4 py-5 bg-white sm:p-6 dark:bg-dark-gray-800">
+
+      <div class="grid grid-cols-6 gap-6">
+        
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :first_name, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.text_field :first_name, class:"mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :last_name, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.text_field :last_name, class:"mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :email, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.email_field :email, class:"mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+        <% if current_user.admin? %> 
+          <div class="col-span-6 sm:col-span-3">
+            <%= form.label :user_type, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+            <%= form.select :user_type, options_for_select(User::ADMIN_USER_TYPES, form.object.user_type), {}, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand focus:border-brand sm:text-sm rounded dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" } %>
+          </div>
+        <% elsif current_user.user_user_permissions.map{|p| p.user_permission.name}.include? "Create Users" %>
+          <div class="col-span-6 sm:col-span-3">
+            <%= form.label :user_type, class:"block text-sm font-medium text-gray-700" %>
+
+            <%= form.select :user_type, options_for_select(User::LPC_USER_TYPES, form.object.user_type), {}, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand focus:border-brand sm:text-sm rounded dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" } %>
+
+          </div>
+        <% end %>
+
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :title, class:"block text-sm font-medium text-gray-700" %>
+
+          <%= form.select :title, options_for_select(User::USER_TITLES, form.object.title), {}, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand focus:border-brand sm:text-sm rounded dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" } %>
+        </div>
+
+        <div class="col-span-6">
+          <fieldset class="space-y-5">
+            <legend class="block text-sm font-medium text-gray-700 dark:text-gray-300">Permissions</legend>
+
+          <%= form.collection_check_boxes(:user_permission_ids, UserPermission.all, :id, :name) do |permission| %>
+
+          
+            <div class="relative flex items-start">
+              <div class="flex items-center h-5">
+                <%= permission.check_box(class: "focus:ring-brand h-4 w-4 text-brand border-gray-300 rounded dark:focus:ring-brand-dark dark:text-brand-dark dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:checked:bg-brand-dark dark:checked:border-brand-dark") %>
+              </div>
+              <div class="ml-3 text-sm">
+                <%= permission.label(class: "font-medium text-gray-700 dark:text-gray-300") %>
+              </div>
+            </div>
+            <% end %>
+          </fieldset>
+        </div>
+
+        <div class="mt-6 col-span-6" data-controller="checkbox-select-all" >
+          <legend class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ridings</legend>
+
+          <div class="mt-5 relative flex items-start">
+            <div class="flex items-center h-5">
+              <input type="checkbox" class="focus:ring-brand h-4 w-4 text-brand border-gray-300 rounded dark:focus:ring-brand-dark dark:text-brand-dark dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:checked:bg-brand-dark dark:checked:border-brand-dark dark:indeterminate:bg-brand-dark dark:indeterminate:border-brand-dark" data-checkbox-select-all-target="checkboxAll" id="ridingSelectAll"/>
+            </div>
+            <div class="ml-3 text-sm">
+              <label class="font-medium text-gray-700 dark:text-gray-300" for="ridingSelectAll">Select All / Deselect All</label>
+            </div>
+          </div>
+
+          <fieldset class="mt-4 grid grid-cols-3 gap-4">
+
+          <%= form.collection_check_boxes(:riding_ids, Riding.all.order(riding_code: :asc), :id, :name) do |riding| %>
+
+          
+            <div class="relative flex items-start">
+              <div class="flex items-center h-5">
+                <%= riding.check_box(class: "focus:ring-brand h-4 w-4 text-brand border-gray-300 rounded dark:focus:ring-brand-dark dark:text-brand-dark dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:checked:bg-brand-dark dark:checked:border-brand-dark",  data: { checkbox_select_all_target: 'checkbox' }) %>
+              </div>
+              <div class="ml-3 text-sm">
+                <%= riding.label(class: "font-medium text-gray-700 dark:text-gray-300") do %>
+                  <%= riding.object.name %> - <%= riding.object.riding_code %>
+                <% end %>
+              </div>
+            </div>
+            <% end %>
+          </fieldset>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-right">
+      <div class="form-group px-4 py-3 bg-gray-50 text-right sm:px-6 dark:bg-dark-gray-700">
+
+        <%= form.submit "Save", class:"inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-brand-medium ring-brand dark:bg-brand-dark dark:text-dark-gray-300 dark:focus:ring-brand-dark dark:hover:bg-brand-medium" %>
+
+      </div>
+  </div>
+</div>
+<% end %>

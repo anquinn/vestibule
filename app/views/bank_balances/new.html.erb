@@ -1,0 +1,9 @@
+<% content_for :page_title do %>
+  <%= t("ridings.update_bank_balance") %>
+<% end %>
+
+<% content_for :page_buttons do %>
+  <%= link_to "Cancel", riding_path(@riding), class: "bg-white rounded-md flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand dark:bg-dark-gray-700 dark:text-dark-gray-300 dark:border-dark-gray-600 dark:focus:ring-offset-dark-gray-900 dark:ring-brand-dark" %>
+<% end %>
+
+<%= render "form", riding: @riding, bank_balance: @bank_balance %>

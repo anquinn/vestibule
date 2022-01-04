@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="h-full bg-gray-50">
+  <head>
+    <title>Vestibule</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+  </head>
+
+  <body class="h-full">
+
+<div class="min-h-full">
+  <div class="bg-brand pb-32">
+    <nav x-data="{ open: false }" class="bg-brand border-b border-brand-light border-opacity-25 lg:border-none">
+      <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="relative h-16 flex items-center justify-between lg:border-b border-brand-dark lg:border-opacity-25">
+          <div class="px-2 flex items-center lg:px-0">
+            <div class="flex-shrink-0">
+
+                <%= image_tag "logo.png", class: "h-10 w-10 round-full block" %>
+
+            </div>
+            <div class="hidden lg:block lg:ml-10">
+              <% if user_signed_in? %>
+                <div class="flex space-x-4 bg-brand-light-hover">
+                  <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-brand-dark hover:bg-opacity-75" -->
+                  <%= link_to "Ridings", ridings_path, class: "text-white hover:bg-brand-dark hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" %>
+
+                  <% if current_user.admin? %>
+                    <%= link_to "Reports", reports_path, class: "text-white hover:bg-brand-dark hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" %>
+                  <% end %>
+
+                  <% if current_user.admin? %>
+                    <%= link_to "External Reports", external_reports_path, class: "text-white hover:bg-brand-dark hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" %>
+                  <% end %>
+
+                  <% if current_user.admin? %>
+                    <%= link_to "Tools", tools_path, class: "text-white hover:bg-brand-dark hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" %>
+                  <% end %>
+
+                  <% if current_user.admin? %>
+                    <%= link_to "Permissions", user_permissions_path, class: "text-white hover:bg-brand-dark hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" %>
+                  <% end %>
+
+                 
+
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <% if user_signed_in? %>
+            <div class="flex-1 px-2 flex justify-center lg:ml-6 lg:justify-end">
+              <div class="max-w-lg w-full lg:max-w-xs">
+                <label for="search" class="sr-only">Search</label>
+                <div class="relative text-gray-400 focus-within:text-gray-600">
+                  <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <!-- Heroicon name: solid/search -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <input id="search" class="block w-full bg-white py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-dark focus:ring-white focus:border-white sm:text-sm" placeholder="Search" type="search" name="search">
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="flex lg:hidden">
+            <!-- Mobile menu button -->
+            <button type="button" class="bg-brand-medium p-2 rounded-md inline-flex items-center justify-center text-brand-light hover:text-white hover:bg-brand-dark hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-medium focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" @click="open = !open">
+              <span class="sr-only">Open main menu</span>
+              <!--
+                Heroicon name: outline/menu
+
+                Menu open: "hidden", Menu closed: "block"
+              -->
+              <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <!--
+                Heroicon name: outline/x
+
+                Menu open: "block", Menu closed: "hidden"
+              -->
+              <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <% if user_signed_in? %>
+          <div class="hidden lg:block lg:ml-4">
+              <div class="flex items-center">
+                <button type="button" class="bg-brand flex-shrink-0 rounded-full p-1 text-brand-light hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-medium focus:ring-white">
+                  <span class="sr-only">View notifications</span>
+                  <!-- Heroicon name: outline/bell -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </button>
+
+                <!-- Profile dropdown -->
+
+                <div class="ml-3 relative flex-shrink-0">
+                  <%= render "shared/profile_dropdown" %>
+                </div>
+
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div class="lg:hidden" id="mobile-menu" x-show="open">
+        <%= render "layouts/mobile_nav" %>
+      </div>
+    </nav>
+
+
+
+
+
+    <header class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="md:flex md:items-center md:justify-between">
+          <div class="flex-1 min-w-0">
+            <h1 class="text-3xl font-bold text-white">
+              <%= yield :page_title %>
+            </h1>
+          </div>
+          <div class="mt-4 flex md:mt-0 md:ml-4">
+            <%= yield :page_buttons %>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <main class="-mt-32">
+    <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+
+      <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
+        
+        <%= render "shared/notice" %>
+
+        <div class="">
+          <%= yield %>
+        </div>
+          
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+  </body>
+</html>

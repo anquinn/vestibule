@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  start_date: <%= 5.day.ago.to_formatted_s(:db) %>
+  end_date: <%= 5.day.from_now.to_formatted_s(:db) %>
+  size: 1
+  suggested_list_size: 1
+  current_subscribes: 1
+  riding: one
+
+two:
+  status: 1
+  start_date: <%= 5.day.ago.to_formatted_s(:db) %>
+  end_date: <%= 5.day.from_now.to_formatted_s(:db) %>
+  size: 1
+  suggested_list_size: 1
+  current_subscribes: 1
+  riding: two

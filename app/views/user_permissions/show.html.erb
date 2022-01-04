@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user_permission %>
+
+<div>
+  <%= link_to "Edit this user permission", edit_user_permission_path(@user_permission) %> |
+  <%= link_to "Back to user permissions", user_permissions_path %>
+
+  <%= button_to "Destroy this user permission", user_permission_path(@user_permission), method: :delete %>
+</div>

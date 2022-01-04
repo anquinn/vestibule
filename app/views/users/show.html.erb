@@ -1,0 +1,149 @@
+<% content_for :page_title do %>
+  User: <%= @user.first_name %> <%= @user.last_name %>
+<% end %>
+
+<% content_for :page_buttons do %>
+  <div class="ml-3 relative" x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false">
+    <div>
+      <button @click="open = !open" class="max-w-xs bg-white rounded-md flex items-center pl-4 pr-2 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand dark:bg-dark-gray-700 dark:text-dark-gray-300 dark:border-dark-gray-600 dark:focus:ring-offset-dark-gray-900 dark:ring-brand-dark" id="user-menu" aria-haspopup="true" x-bind:aria-expanded="open">
+        
+        Actions
+        <svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+				  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+				</svg>
+      </button>
+    </div>
+
+    <div x-show="open" x-description="Profile dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 dark:bg-dark-gray-700 dark:shadow-highlight" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" style="display: none;">
+
+      <%= link_to "Edit User", edit_user_path(@user), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-gray-300 dark:hover:bg-dark-gray-600" %>
+      <% if @user.locked_at.nil? %>
+      	<%= link_to "Lock User Account", lock_user_users_path(lock_user_id: @user.id), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-gray-300 dark:hover:bg-dark-gray-600" %>
+      <% else %>
+      	<%= link_to "Unlock User Account", unlock_user_users_path(lock_user_id: @user.id), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-gray-300 dark:hover:bg-dark-gray-600" %>
+      <% end %>
+
+      <% if policy(:user).impersonate? %>
+      	<%= link_to "Impersonate User", impersonate_user_path(@user), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-gray-300 dark:hover:bg-dark-gray-600", data:{ "turbo-method": "post"} %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
+    <%= link_to "Cancel", users_path, class:"inline-flex items-center px-4 py-2 border border-gray-300 rounded shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand dark:bg-dark-gray-700 dark:text-dark-gray-300 dark:border-dark-gray-600 dark:focus:ring-offset-dark-gray-900 dark:ring-brand-dark" %>
+  </div>
+<% end %>
+
+<div class="grid grid-cols-6 gap-4">
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg col-span-6 lg:col-span-4 dark:bg-dark-gray-800 dark:shadow-highlight">
+	<div class="px-4 py-5 sm:px-6">
+		<h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-dark-gray-300">
+			Account
+		</h3>
+		<p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-dark-gray-400">
+			<%= @user.email %> 
+		</p>
+	</div>
+	<div class="border-t border-gray-200 dark:border-dark-gray-600">
+		<dl>
+			<div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-dark-gray-700">
+				<dt class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">
+					User type
+				</dt>
+				<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-dark-gray-300">
+					<%= @user.user_type.titleize %>
+				</dd>
+			</div>
+			<div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-dark-gray-800">
+				<dt class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">
+					Title
+				</dt>
+				<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-dark-gray-300">
+					<%= @user.title %>
+				</dd>
+			</div>
+			<div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-dark-gray-700 dark:text-dark-gray-400">
+				<dt class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">
+					Ridings
+				</dt>
+				<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-dark-gray-300">
+					<% if @user.ridings.any? %>
+						<% if @user.ridings.size == 338 %>
+							<span class="italic font-medium">All ridings</span>
+						<% else %>
+						<ul>
+							<% @user.user_ridings.each do |riding| %>
+								<li><%= riding.riding.name %></li>
+							<% end %>
+						</ul>
+						<% end %>
+					<% else %>
+						<span class="italic font-medium">No ridings</span>
+					<% end %>
+				</dd>
+			</div>
+			<div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 dark:bg-dark-gray-800">
+				<dt class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">
+					Permissions
+				</dt>
+				<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-dark-gray-300">
+					<% if @user.user_permissions.any? %>
+					<ul>
+						<% @user.user_permissions.order(name: :asc).each do |permission| %>
+							<li><%= permission.name %></li>
+						<% end %>
+					</ul>
+					<% end %>
+				</dd>
+			</div>
+		</dl>
+	</div>
+</div>
+
+<div class="overflow-hidden sm:rounded-lg col-span-6 lg:col-span-2 h-auto">
+	<section class="">
+      <div class="bg-white px-4 py-5 shadow sm:rounded sm:px-6 dark:bg-dark-gray-800 dark:shadow-highlight">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-dark-gray-300">Details</h2>
+        <div class="mt-2 flow-root space-y-6">
+          <div class="">
+            <div>
+              <h2 class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">Created</h2>
+              <p class="text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                <%= @user.created_at.strftime("%Y-%m-%d") %>  
+              </p>
+            </div>
+          </div>
+
+          <div class="">
+            <div>
+              <h2 class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">Last sign in</h2>
+              <p class="text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                <% if @user.last_sign_in_at.present? %>
+                  <%= @user.last_sign_in_at.strftime("%Y-%m-%d - %l:%M %p") %>
+                <% else %>
+                  Never
+                <% end %>
+              </p>
+            </div>
+          </div>
+
+          <% if @user.locked_at.present? %>
+	          <div class="">
+	            <div>
+	              <h2 class="text-sm font-medium text-gray-500 dark:text-dark-gray-400">Account Locked</h2>
+	              <p class="text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+	                 <%= @user.locked_at.strftime("%Y-%m-%d - %l:%M %p") %>
+	              </p>
+	            </div>
+	          </div>
+          <% end %>
+
+        </div>
+      </div>
+    </section>
+</div>
+
+</div>
+

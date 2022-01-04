@@ -1,0 +1,19 @@
+<div class="mt-6">
+  <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-dark-gray-300">
+    <%= t("ridings.voter_contact") %>
+  </h3>
+
+  <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <%= render layout: "shared/stat_block", locals: { stat_title: t("ridings.attempts"), stat: "25,531" } do %>
+      <svg class="h-6 w-6 text-white dark:text-dark-gray-300" version="1.1" viewBox="0 0 620 620" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+       <path d="m624.89 235.5-256.67-175c-3.5234-2.4258-8.1914-2.6836-12.016-0.67578-3.8281 2.0039-6.207 5.9727-6.207 10.312v105.23c-179.18 7.418-277.62 185.03-280 314v0.14062 0.23438 0.1875c0 0.69922 0.046875 1.375 0.14062 2.0078 0.86328 5.4375 5.5547 9.4492 11.27 9.5664h0.25781c6.3008 0 11.457-5.2734 11.668-11.551 1.0508-30.355 126-166.65 256.67-174.49v104.65c0 4.3398 2.4023 8.2852 6.2305 10.312 3.8281 2.0547 8.4688 1.7734 12.016-0.67578l256.67-175c3.168-2.1484 5.082-5.7656 5.082-9.6133 0-3.8516-1.9141-7.4688-5.1094-9.6367z"/>
+      </svg>
+    <% end %>
+
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.conversations"), stat: "16,441", icon: "chat-alt-2"} %>
+
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.voter_ids"), stat: "20,721", icon: "identification"} %>
+
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.liberal_ids"), stat: "12,381", icon: "cursor-click"} %>
+  </dl>
+</div>

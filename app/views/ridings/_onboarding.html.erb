@@ -1,0 +1,36 @@
+<div data-controller="welcome ridings-onboarding">
+  <div id="welcome-modal-background" class="fixed top-0 left-0 w-full h-full bg-gray-500 transform transition-opacity ease-in-out duration-500" style="background-color:  rgba(54, 65, 82, 0.75); z-index: 9998;"></div>
+
+    <div id="welcome-modal" class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center transition ease-in-out duration-500" style="z-index: 9999;">
+
+    
+
+    <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6 dark:bg-dark-gray-900 dark:border-none dark:shadow-highlight" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <div>
+        <div class="mx-auto flex items-center justify-center h-24 w-24 wave" style="font-size: 5rem;">
+          👋
+        </div>
+        <div class="mt-3 text-center sm:mt-5">
+          <h3 class="text-2xl leading-6 font-medium text-gray-900 dark:text-dark-gray-300" id="modal-headline">
+            <%= t("welcome.welcome") %>
+          </h3>
+          <div class="mt-2">
+            <p class="text-md leading-5 text-gray-500 dark:text-dark-gray-400">
+              <%= t("welcome.description") %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 sm:mt-6">
+        <span class="flex w-full rounded-md shadow-sm sm:col-start-2">
+          <button type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-brand text-base leading-6 font-medium text-white shadow-sm hover:bg-brand-medium focus:outline-none focus:border-brand-medium focus:ring focus:ring-brand-dark transition ease-in-out duration-150 sm:text-sm sm:leading-5 dark:bg-brand-dark dark:hover:bg-brand-medium" data-welcome-target="close" data-action="click->welcome#dismiss" onclick="tour.start()">
+            <%= t("welcome.start_exploring") %>
+          </button>
+        </span>
+        <div class="mt-4 text-gray-500 text-sm text-center dark:text-dark-gray-400">
+          <%= t("welcome.seen_this") %> <span class="underline hover:text-gray-400 cursor-pointer dark:text-dark-gray-300" data-target="welcome.close" data-action="click->welcome#dismiss"><%= t("welcome.skip") %></span> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

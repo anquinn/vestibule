@@ -1,0 +1,28 @@
+.tippy-box{
+	@apply text-gray-900 bg-gray-50 shadow-lg rounded-lg border border-gray-200;
+	@apply dark:text-dark-gray-300 dark:bg-dark-gray-700 dark:shadow-highlight dark:border-none dark:shadow-none;
+}
+
+.tippy-box[data-placement^=top]>.tippy-arrow:before{ 
+	@apply border-t-gray-50 dark:border-t-dark-gray-700;
+}
+
+.tippy-box[data-placement^=bottom]>.tippy-arrow:before{ 
+	@apply border-b-gray-50 dark:border-b-dark-gray-700;
+}
+
+.tippy-box[data-placement^=left]>.tippy-arrow:before{
+	@apply border-l-gray-50 dark:border-l-dark-gray-700;
+}
+
+.tippy-box[data-placement^=right]>.tippy-arrow:before{
+	@apply border-r-gray-50 dark:border-r-dark-gray-700;
+}
+
+.tippy-box>.tippy-backdrop{
+	@apply bg-gray-50 dark:bg-dark-gray-700;
+}
+
+.tippy-box>.tippy-svg-arrow{
+	@apply fill-gray-50 dark:fill-dark-gray-700;
+}

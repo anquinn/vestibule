@@ -1,0 +1,160 @@
+@import "tippy.js/dist/tippy.css";
+@import "tippy.js/themes/light.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}*/
+
+.sort {
+  position: relative;
+  left: -0.5rem;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.sort-desc {
+  border-top: 8px solid red;
+  top: 0.8rem;
+}
+
+.sort-asc {
+  border-bottom: 8px solid red;
+  top: -0.7rem;
+}
+
+
+/* original styles */
+.shepherd-element{background:#fff;border-radius:5px;box-shadow:0 1px 4px rgba(0,0,0,.2);max-width:400px;opacity:0;outline:none;transition:opacity .3s,visibility .3s;visibility:hidden;width:100%;z-index:9999}.shepherd-enabled.shepherd-element{opacity:1;visibility:visible}.shepherd-element[data-popper-reference-hidden]:not(.shepherd-centered){opacity:0;pointer-events:none;visibility:hidden}.shepherd-element,.shepherd-element *,.shepherd-element :after,.shepherd-element :before{box-sizing:border-box}.shepherd-arrow,.shepherd-arrow:before{position:absolute;width:16px;height:16px;z-index:-1}.shepherd-arrow:before{content:"";transform:rotate(45deg);background:#fff}.shepherd-element[data-popper-placement^=top]>.shepherd-arrow{bottom:-8px}.shepherd-element[data-popper-placement^=bottom]>.shepherd-arrow{top:-8px}.shepherd-element[data-popper-placement^=left]>.shepherd-arrow{right:-8px}.shepherd-element[data-popper-placement^=right]>.shepherd-arrow{left:-8px}.shepherd-element.shepherd-centered>.shepherd-arrow{opacity:0}.shepherd-element.shepherd-has-title[data-popper-placement^=bottom]>.shepherd-arrow:before{background-color:#e6e6e6}.shepherd-target-click-disabled.shepherd-enabled.shepherd-target,.shepherd-target-click-disabled.shepherd-enabled.shepherd-target *{pointer-events:none}
+.shepherd-modal-overlay-container{-ms-filter:progid:dximagetransform.microsoft.gradient.alpha(Opacity=50);filter:alpha(opacity=50);height:0;left:0;opacity:0;overflow:hidden;pointer-events:none;position:fixed;top:0;transition:all .3s ease-out,height 0ms .3s,opacity .3s 0ms;width:100vw;z-index:9997}.shepherd-modal-overlay-container.shepherd-modal-is-visible{height:100vh;opacity:.5;transition:all .3s ease-out,height 0s 0s,opacity .3s 0s}.shepherd-modal-overlay-container.shepherd-modal-is-visible path{pointer-events:all}
+.shepherd-content{border-radius:5px;outline:none;padding:0}
+.shepherd-footer{border-bottom-left-radius:5px;border-bottom-right-radius:5px;display:flex;justify-content:flex-end;padding:0 .75rem .75rem}.shepherd-footer .shepherd-button:last-child{margin-right:0}
+.shepherd-header{align-items:center;border-top-left-radius:5px;border-top-right-radius:5px;display:flex;justify-content:flex-end;line-height:2em;padding:.75rem .75rem 0}.shepherd-has-title .shepherd-content .shepherd-header{background:#e6e6e6;padding:1em}
+.shepherd-text{color:rgba(0,0,0,.75);font-size:1rem;line-height:1.3em;padding:.75em}.shepherd-text p{margin-top:0}.shepherd-text p:last-child{margin-bottom:0}
+.shepherd-button{background:#3288e6;border:0;border-radius:3px;color:hsla(0,0%,100%,.75);cursor:pointer;margin-right:.5rem;padding:.5rem 1.5rem;transition:all .5s ease}.shepherd-button:not(:disabled):hover{background:#196fcc;color:hsla(0,0%,100%,.75)}.shepherd-button.shepherd-button-secondary{background:#f1f2f3;color:rgba(0,0,0,.75)}.shepherd-button.shepherd-button-secondary:not(:disabled):hover{background:#d6d9db;color:rgba(0,0,0,.75)}.shepherd-button:disabled{cursor:not-allowed}
+.shepherd-cancel-icon{background:transparent;border:none;color:hsla(0,0%,50.2%,.75);font-size:1.5em;cursor:pointer;font-weight:400;margin:0;padding:0;transition:color .5s ease}.shepherd-cancel-icon:hover{color:rgba(0,0,0,.75)}.shepherd-has-title .shepherd-content .shepherd-cancel-icon{color:hsla(0,0%,50.2%,.75)}.shepherd-has-title .shepherd-content .shepherd-cancel-icon:hover{color:rgba(0,0,0,.75)}
+.shepherd-title{color:rgba(0,0,0,.75);display:flex;font-size:1rem;font-weight:400;flex:1 0 auto;margin:0;padding:0}
+
+/* override */
+
+.shepherd-target {
+  @apply relative z-10 outline outline-2 outline-offset-4 outline-brand animate-pulse rounded dark:outline-brand-dark;
+}
+
+.shepherd-target.nav-item {
+  @apply relative z-10 m-0 p-3 outline outline-2 outline-offset-2 outline-white animate-pulse rounded-lg dark:outline-brand-dark;
+}
+
+.onboarding-offset.shepherd-target {
+  @apply outline-offset-12;
+}
+
+.shepherd-element {
+  @apply shadow-xl text-white rounded-lg;
+  @apply dark:text-dark-gray-300 dark:bg-dark-gray-700;
+}
+
+.shepherd-arrow:before, .shepherd-element.shepherd-has-title[data-popper-placement^=bottom]>.shepherd-arrow:before  {
+  @apply bg-brand dark:bg-dark-gray-800;
+}
+
+.shepherd-arrow:after {
+  @apply bg-brand dark:bg-dark-gray-800;
+}
+
+.shepherd-has-title .shepherd-header {
+    @apply dark:bg-dark-gray-800 dark:shadow-highlight;
+    @apply px-6 pt-2 pb-0;
+}
+
+.shepherd-has-title .shepherd-content .shepherd-header{
+  @apply bg-brand dark:bg-dark-gray-800 dark:shadow-highlight;
+}
+
+.shepherd-header {
+    @apply text-white;
+    @apply font-semibold;
+    @apply text-lg;
+    @apply rounded-t-lg;
+}
+
+.shepherd-content {
+  @apply bg-brand rounded-lg dark:bg-dark-gray-800;
+}
+
+.shepherd-title {
+  @apply text-white dark:text-dark-gray-300;
+  @apply font-semibold;
+  @apply text-xl;
+}
+
+.shepherd-cancel-icon {
+    color: #ffffff !important;
+}
+
+.shepherd-text {
+  @apply text-white;
+  @apply text-sm;
+  @apply px-6 py-5;
+}
+
+.shepherd-button {
+    @apply rounded-md shadow-sm inline-flex items-center px-3 py-2 border border-brand text-sm leading-4 font-medium rounded-md text-white bg-brand-dark transition ease-in-out duration-150 focus:bg-brand-medium active:bg-brand-medium focus:ring ring-brand-dark;
+    @apply hover:text-white hover:bg-brand-medium hover:dark:bg-brand-medium !important;
+    @apply dark:text-dark-gray-300 dark:bg-brand-dark;
+}
+
+.shepherd-button-secondary {
+  background: none !important;
+  margin-right: auto;
+  color: #fff !important;
+  text-decoration: underline;
+  text-align: left;
+  @apply text-xs;
+
+  &:hover {
+    background: none !important;
+  }
+}
+
+.shepherd-welcome {
+  max-width: 500px !important;
+}
+
+.wave {
+  animation: 15s wave infinite;
+  transform-origin: 70% 70%;
+} 
+
+@keyframes wave {
+  0% { transform: rotate( 0.0deg) }
+  1% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+  2% { transform: rotate(-8.0deg) }
+  3% { transform: rotate(14.0deg) }
+  4% { transform: rotate(-4.0deg) }
+  5% { transform: rotate(10.0deg) }
+  6% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+}
+
+
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

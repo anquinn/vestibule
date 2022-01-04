@@ -1,0 +1,41 @@
+<!-- Profile dropdown -->
+<% if user_signed_in? %>
+  <div x-data="{ open: false }" @keydown.window.escape="open = false" @click.away="open = false", class="relative flex-shrink-0">
+
+    <div>
+      <button @click="open = !open" type="button" class="rounded-full flex text-sm focus:outline-none focus:ring-2 ring-brand-medium" id="user-menu-button" aria-haspopup="true" x-bind:aria-expanded="open">
+        <span class="sr-only">Open user menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="rounded-full h-8 w-8 text-brand dark:text-dark-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </button>
+    </div>
+
+    <!--
+      Dropdown menu, show/hide based on menu state.
+
+      Entering: "transition ease-out duration-100"
+        From: "transform opacity-0 scale-95"
+        To: "transform opacity-100 scale-100"
+      Leaving: "transition ease-in duration-75"
+        From: "transform opacity-100 scale-100"
+        To: "transform opacity-0 scale-95"
+    -->
+    <div x-show="open" x-description="Profile dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg pb-1 bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-300 dark:bg-dark-gray-700 dark:divide-dark-gray-600" role="menu" aria-orientation="vertical" aria-labelledby="user-menu" style="display: none;">
+      <div class="px-4 py-3 bg-gray-100 rounded-t-md dark:bg-dark-gray-800 dark:shadow-highlight" role="none">
+        <p class="text-sm font-medium text-gray-900 truncate dark:text-dark-gray-300" role="none">
+          <%= current_user.first_name %> <%= current_user.last_name %>
+        </p>
+        <p class="text-sm font-base text-gray-900 truncate dark:text-dark-gray-300" role="none">
+          <%= current_user.email %>
+        </p>
+      </div>
+
+      <div class="py-1" role="none">
+      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+      <%= button_to(t("general.logout"), destroy_user_session_path, method: :delete, class: "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left dark:text-dark-gray-300 dark:hover:bg-dark-gray-600", role: "menuitem", data: {turbo: false}) %>
+    </div>
+    </div>
+  </div>
+<% end %>
+

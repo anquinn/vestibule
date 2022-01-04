@@ -1,0 +1,65 @@
+<%= turbo_frame_tag "fo_report", class: "shadow overflow-hidden rounded border-b border-gray-200" do %>
+  
+
+
+  <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= sort_link_to "Riding Code", :riding_code, class: "table-cell pr-4", data: { turbo_action: "advance" } %>
+              </th>
+
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= sort_link_to "Riding", :name_en, class: "table-cell pr-4", data: { turbo_action: "advance" } %>
+              </th>
+              
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Region
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                <%= sort_link_to "Sign Ups", "riding.email_plan.status", class: "table-cell pr-4", data: { turbo_action: "advance" } %>
+              </th>
+
+              <% 13.times do |i| %>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                  <%= (Date.current-(i+1)).strftime('%b %e') %>
+                </th>
+              <% end %>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <% ridings.each do |riding| %>
+
+            <% if cycle('odd', 'even') == 'odd' %>
+              <tr class="bg-white">
+            <% else %>
+              <tr class="bg-gray-50">
+            <% end %>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <%= link_to riding.riding_code, riding, data: {"turbo-frame":"_top"} %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <%= link_to riding.name, riding, data: {"turbo-frame":"_top"} %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <%= riding.region %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                <%= rand(0..24) %>
+              </td>
+
+              <% 13.times do |i| %>
+                <% number = rand(0..24) %>
+                <td class="px-6 py-4 text-sm text-center border <%= color_range(number) %>">
+                  <%= number %>
+                </td>
+              <% end %>
+            </tr>
+
+            <% end %>
+          </tbody>
+        </table>
+<% end %>

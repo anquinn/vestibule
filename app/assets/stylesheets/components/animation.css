@@ -1,0 +1,32 @@
+.wave {
+  animation: 15s wave infinite;
+  transform-origin: 70% 70%;
+} 
+
+@keyframes wave {
+  0% { transform: rotate( 0.0deg) }
+  1% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+  2% { transform: rotate(-8.0deg) }
+  3% { transform: rotate(14.0deg) }
+  4% { transform: rotate(-4.0deg) }
+  5% { transform: rotate(10.0deg) }
+  6% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

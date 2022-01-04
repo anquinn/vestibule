@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_en: MyString
+  name_fr: MyString
+  riding_code: MyString
+  province_en: MyString
+  province_fr: MyString
+  member_name_en: MyString
+  member_name_fr: MyString
+  member_affiliation_en: MyString
+  member_affiliation_fr: MyString
+  riding_type_en: MyString
+  riding_type_fr: MyString
+  region_en: MyString
+  region_fr: MyString
+
+two:
+  name_en: MyString
+  name_fr: MyString
+  riding_code: MyString
+  province_en: MyString
+  province_fr: MyString
+  member_name_en: MyString
+  member_name_fr: MyString
+  member_affiliation_en: MyString
+  member_affiliation_fr: MyString
+  riding_type_en: MyString
+  riding_type_fr: MyString
+  region_en: MyString
+  region_fr: MyString

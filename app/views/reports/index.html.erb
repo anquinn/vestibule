@@ -1,0 +1,94 @@
+<% if policy(:report).show_internal_reports? %>
+  <% content_for :page_title do %>
+    <%= t("general.reports") %>
+  <% end %>
+<% end %>
+
+<% if policy(:report).show_internal_reports? %>
+<div class="flex flex-col mb-20">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg dark:border-dark-gray-600">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-gray-600">
+          <thead class="bg-gray-50 dark:bg-dark-gray-700">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= t("general.name") %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= t("general.description") %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white dark:bg-dark-gray-800">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                <%= link_to "Field Organzier Report", field_organizer_reports_path %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-dark-gray-400">
+                Your personal daily field report
+              </td>
+            </tr>
+
+            <tr class="bg-gray-50 dark:bg-dark-gray-700">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                <%= link_to "Regional Field Report", regional_field_reports_path %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-dark-gray-400">
+                Regional field report including volunteer sign ups and attempts
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="-mt-8 md:flex md:items-center md:justify-between">
+  <div class="flex-1 min-w-0">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-dark-gray-300">
+      <%= t("general.riding") %> <%= t("general.reports") %>
+    </h1>
+  </div>
+</div>
+
+
+<div class="mt-6 flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg dark:border-dark-gray-600">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-gray-600">
+          <thead class="bg-gray-50 dark:bg-dark-gray-700">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= t("general.name") %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-dark-gray-300">
+                <%= t("general.description") %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% reset_cycle %>
+            <% @riding_reports.each do |report| %>
+              <% if cycle('odd', 'even') == 'odd' %>
+                <tr class="bg-white dark:bg-dark-gray-800">
+              <% else %>
+                <tr class="bg-gray-50 dark:bg-dark-gray-700">
+              <% end %>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-dark-gray-300">
+                  <%= link_to "#{report.riding.riding_code} - #{report.external_report.name}", report.link, target: "_blank" %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-dark-gray-400">
+                  <%= report.external_report.description %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight" data-controller="tooltip" data-tooltip-content-value="Updated <%= @riding.current_bank_balance_updated_date.strftime("%Y-%m-%d") %>">
+
+  <% if @riding.bank_balances.any? %>
+    <% if (1.month.ago..1.day.from_now).cover?(@riding.current_bank_balance_updated_date) %>
+      <div class="absolute right-1 top-2 inline-flex text-green-800 dark:text-green-700 dark:shadow-none" title="Updated <%= @riding.current_bank_balance_updated_date.strftime("%Y-%m-%d") %>">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+      </div>
+
+    <% elsif (3.months.ago..1.month.ago).cover?(@riding.current_bank_balance_updated_date) %>
+      <div class="absolute right-1 top-2 inline-flex text-amber-300 dark:text-amber-300 dark:shadow-none" title="Updated <%= @riding.current_bank_balance_updated_date.strftime("%Y-%m-%d") %> Please update balance.">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </svg>
+      </div>
+
+    <% else %>
+      <div class="absolute right-1 top-2 inline-flex text-red-800 dark:text-red-600 dark:shadow-none" title="Updated <%= @riding.current_bank_balance_updated_date.strftime("%Y-%m-%d") %>. Please update balance.">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    <% end %>
+  <% end %>
+
+  
+  <dt>
+    <div class="absolute bg-brand rounded-md p-3 dark:bg-brand-dark">
+      <%= heroicon icon, variant: :outline, options: { class: "h-6 w-6 text-white dark:text-dark-gray-300" } %>
+    </div>
+    <p class="ml-16 text-sm font-medium text-gray-500 truncate dark:text-dark-gray-300"><%= stat_title %></p>
+  </dt>
+  <dd class="ml-16 flex items-baseline">
+    <p class="text-2xl font-semibold text-gray-900 dark:text-dark-gray-400">
+      <%= stat %>
+    </p>
+  </dd>
+</div>

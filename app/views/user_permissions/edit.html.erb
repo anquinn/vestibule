@@ -1,0 +1,5 @@
+<% content_for :page_title do %>
+  Editing <%= @user_permission.name %> Permission
+<% end %>
+
+<%= render 'form', user_permission: @user_permission %>

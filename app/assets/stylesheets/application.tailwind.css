@@ -1,0 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+@import "components/shepherd";
+@import "components/sorting";
+@import "components/animation";
+
+@import "tippy.js/dist/tippy.css";
+@import "components/tippy";
+
+@import "tailwindcss/utilities";

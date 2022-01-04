@@ -1,0 +1,5 @@
+<% content_for :page_title do %>
+  Edit User <%= @user.first_name %> <%= @user.last_name %>
+<% end %>
+
+<%= render "form", user: @user %>

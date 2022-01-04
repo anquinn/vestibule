@@ -1,0 +1,25 @@
+<% if local_assigns[:tooltip] %>
+  <% if local_assigns[:tooltip_position] %>
+    <div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight" data-controller="tooltip" data-tooltip-content-value="<%= tooltip %>" data-tooltip-position-value="<%= tooltip_position %>">
+  <% else %>
+    <div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight" data-controller="tooltip" data-tooltip-content-value="<%= tooltip %>">
+  <% end %>
+<% else %>
+  <div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight">
+<% end %>
+  <dt>
+    <div class="absolute bg-brand rounded-md p-3 dark:bg-brand-dark">
+      <% if local_assigns[:icon] %>
+        <%= heroicon icon, variant: :outline, options: { class: "h-6 w-6 text-white dark:text-dark-gray-300" } %>
+      <% else %>
+          <%= yield %>
+      <% end %>
+    </div>
+    <p class="ml-16 text-sm font-medium text-gray-500 truncate dark:text-dark-gray-300"><%= stat_title %></p>
+  </dt>
+  <dd class="ml-16 flex items-baseline">
+    <p class="text-2xl font-semibold text-gray-900 dark:text-dark-gray-400">
+      <%= stat %>
+    </p>
+  </dd>
+</div>

@@ -1,0 +1,15 @@
+<div class="mt-6">
+  <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-dark-gray-300">
+    <%= t("ridings.volunteers") %>
+  </h3>
+
+  <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.active_volunteers"), stat: "72", icon: "users"} %>
+
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.new_volunteers"), stat: "28", icon: "user-add"} %>
+
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.contact_later"), stat: "102", icon: "user"} %>
+
+    <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.average_wait_time"), stat: "74 Days", icon: "clock"} %>
+  </dl>
+</div>

@@ -1,0 +1,82 @@
+<%= form_with(model: riding) do |form| %>
+  <% if riding.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(riding.errors.count, "error") %> prohibited this riding from being saved:</h2>
+
+      <ul>
+        <% riding.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name_en, style: "display: block" %>
+    <%= form.text_field :name_en %>
+  </div>
+
+  <div>
+    <%= form.label :name_fr, style: "display: block" %>
+    <%= form.text_field :name_fr %>
+  </div>
+
+  <div>
+    <%= form.label :riding_code, style: "display: block" %>
+    <%= form.text_field :riding_code %>
+  </div>
+
+  <div>
+    <%= form.label :province_en, style: "display: block" %>
+    <%= form.text_field :province_en %>
+  </div>
+
+  <div>
+    <%= form.label :province_fr, style: "display: block" %>
+    <%= form.text_field :province_fr %>
+  </div>
+
+  <div>
+    <%= form.label :member_name_en, style: "display: block" %>
+    <%= form.text_field :member_name_en %>
+  </div>
+
+  <div>
+    <%= form.label :member_name_fr, style: "display: block" %>
+    <%= form.text_field :member_name_fr %>
+  </div>
+
+  <div>
+    <%= form.label :member_affiliation_en, style: "display: block" %>
+    <%= form.text_field :member_affiliation_en %>
+  </div>
+
+  <div>
+    <%= form.label :member_affiliation_fr, style: "display: block" %>
+    <%= form.text_field :member_affiliation_fr %>
+  </div>
+
+  <div>
+    <%= form.label :riding_type_en, style: "display: block" %>
+    <%= form.text_field :riding_type_en %>
+  </div>
+
+  <div>
+    <%= form.label :riding_type_fr, style: "display: block" %>
+    <%= form.text_field :riding_type_fr %>
+  </div>
+
+  <div>
+    <%= form.label :region_en, style: "display: block" %>
+    <%= form.text_field :region_en %>
+  </div>
+
+  <div>
+    <%= form.label :region_fr, style: "display: block" %>
+    <%= form.text_field :region_fr %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

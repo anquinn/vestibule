@@ -1,0 +1,17 @@
+<!-- Modal Container -->
+<div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center transform transition-all justify-center duration-200 fade" style="z-index: 9999;">
+ <!-- Modal Inner Container -->
+ <div class="max-h-screen w-full max-w-lg relative">
+   <!-- Modal Card -->
+   <div class="m-1 bg-white rounded-lg shadow-xl dark:bg-dark-gray-800">
+     <div class="p-8">
+      <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-dark-gray-300">
+        <%= t("ridings.update_bank_balance") %>
+      </h3>
+
+       <%= render "bank_balances/form", riding: @riding, bank_balance: BankBalance.new %>
+
+     </div>
+   </div>
+ </div>
+</div>
