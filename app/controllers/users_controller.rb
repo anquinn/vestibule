@@ -61,24 +61,22 @@ class UsersController < ApplicationController
 
   def locale_switch
     if current_user.preferred_language == "en"
-      if current_user.update(preferred_language: "fr")
-        redirect_back fallback_location: root_path, status: :see_other
-      end
+      current_user.update(preferred_language: "fr")
     else
-      if current_user.update(preferred_language: "en")
-        redirect_back fallback_location: root_path, status: :see_other
-      end
+      current_user.update(preferred_language: "en")
     end
+
+    redirect_back fallback_location: root_path
   end
 
   def theme_switch
     if current_user.theme == "light"
       if current_user.update(theme: "dark")
-        redirect_back fallback_location: root_path, status: :see_other
+        redirect_back fallback_location: root_path
       end
     else
       if current_user.update(theme: "light")
-        redirect_back fallback_location: root_path, status: :see_other
+        redirect_back fallback_location: root_path
       end
     end
   end
