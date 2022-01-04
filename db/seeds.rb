@@ -33,5 +33,23 @@ if UserPermission.all.size == 0
 		UserPermission.find_or_create_by(name: row["report_en"]) do |permission|
 			permission.name = row["report_en"]
 		end
+
+		UserPermission.find_or_create_by(name: "Create Users") do |permission|
+			permission.name = "Create Users"
+		end
+
+		UserPermission.find_or_create_by(name: "Field Organizer") do |permission|
+			permission.name = "Field Organizer"
+		end
+
 	end
 end
+
+
+Rake::Task["update_ridings:update_email_plans"].invoke
+
+Rake::Task["update_ridings:update_suggested_email_plan_sizes"].invoke
+
+Rake::Task["update_ridings:update_mps"].invoke
+
+Rake::Task["update_ridings:update_riding_external_report_links"].invoke

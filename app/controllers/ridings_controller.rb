@@ -15,6 +15,8 @@ class RidingsController < ApplicationController
   # GET /ridings/1 or /ridings/1.json
   def show
     authorize @riding
+
+    @reports = policy_scope(RidingExternalReport).where(riding: @riding)
   end
 
   # GET /ridings/new

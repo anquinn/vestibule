@@ -8,8 +8,7 @@
 
   <div class="bg-white shadow-md overflow-hidden sm:rounded-lg mt-6 dark:bg-dark-gray-800">
     <ul role="list" class="divide-y divide-gray-200 dark:divide-dark-gray-700">
-      <% @riding.riding_external_reports.each do |report| %>
-      <% if current_user.user_user_permissions.map{|p| p.user_permission.name}.include? (report.external_report.name_en) || current_user.admin? %>
+      <% @reports.each do |report| %>
       <li>
         <%= link_to report.link, class: "block hover:bg-gray-50 dark:hover:bg-dark-gray-700", target:"_blank" do %>
 
@@ -40,7 +39,6 @@
               </svg>
             </div>
           </div>
-        <% end %>
         <% end %>
       </li>
     <% end %>

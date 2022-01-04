@@ -114,5 +114,41 @@ require 'csv'
     puts "#{riding_count} MPs updated."
   end
 
+  desc "Update riding external report links"
+  task :update_riding_external_report_links => :environment do |t, args|
+
+    # file name in lib/seeds dir
+    file_name = "lpc_reports.csv"
+    # set based on the number of columsn in the file
+    column_count = 5
+    reports_count = 0
+
+    puts "running..."
+    
+    CSV.foreach(Rails.root.join("lib/seeds/#{file_name}"), headers: true) do |row|
+      reports_count +=1
+
+      riding = Riding.find_by(riding_code: row["Fednum"].to_i)
+
+      report = RidingExternalReport.find_or_initialize_by(riding: riding, external_report: ExternalReport.find_by(name_en: "EDA - Fundraising Report"))
+      report.link = row[1]
+      report.save
+
+      report = RidingExternalReport.find_or_initialize_by(riding: riding, external_report: ExternalReport.find_by(name_en: "EDA - Financial Report"))
+      report.link = row[2]
+      report.save
+
+      report = RidingExternalReport.find_or_initialize_by(riding: riding, external_report: ExternalReport.find_by(name_en: "EDA - Daily Notification"))
+      report.link = row[3]
+      report.save
+
+      report = RidingExternalReport.find_or_initialize_by(riding: riding, external_report: ExternalReport.find_by(name_en: "EDA - Dashboard"))
+      report.link = row[4]
+      report.save
+    end
+
+    puts "#{reports_count} ridings updated."
+  end
+
 
 end
