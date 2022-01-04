@@ -1,4 +1,8 @@
-<div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight" data-controller="tooltip" data-tooltip-content-value="Updated <%= @riding.current_bank_balance_updated_date.strftime("%Y-%m-%d") %>">
+<% if @riding.bank_balances.any? %>
+  <div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight" data-controller="tooltip" data-tooltip-content-value="Updated <%= @riding.current_bank_balance_updated_date.strftime("%Y-%m-%d") %>">
+<% else %>
+  <div class="relative bg-white py-5 px-4 sm:pt-6 sm:px-6 shadow-md rounded-lg overflow-hidden border dark:bg-dark-gray-800 dark:border-none dark:shadow-highlight">
+<% end %>
 
   <% if @riding.bank_balances.any? %>
     <% if (1.month.ago..1.day.from_now).cover?(@riding.current_bank_balance_updated_date) %>
