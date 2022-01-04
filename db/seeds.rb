@@ -2,7 +2,10 @@ require 'csv'
 
 user = User.find_or_create_by(email: "aquinn@datasciences.ca") do |user|
 	user.password = "Password!2"
-	user.admin = true
+	user.first_name = "Andrew"
+	user.last_name = "Quinn"
+	user.title = "DS Admin"
+	user.user_type = "admin"
 end
 
 if Riding.all.size == 0
