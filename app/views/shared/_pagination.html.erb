@@ -1,0 +1,22 @@
+
+<% link = pagy_link_proc(pagy) -%>
+<nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 dark:bg-dark-gray-800 dark:border-dark-gray-600 dark:text-dark-gray-300" aria-label="Pagination">
+	<div class="hidden sm:block">
+		<p class="text-sm text-gray-700 dark:text-dark-gray-400">
+			<%== pagy_info(@pagy) %>
+		</p>
+	</div>
+	<div class="flex-1 flex justify-between sm:justify-end">
+		<% if pagy.prev -%>
+			<span class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-dark-gray-600 dark:border-dark-gray-700 dark:text-dark-gray-300 dark:hover:bg-dark-gray-700"><%== link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"') %></span>
+		<% else -%>
+			
+		<% end -%>
+
+		<% if pagy.next -%>
+			<span class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-dark-gray-600 dark:border-dark-gray-700 dark:text-dark-gray-300 dark:hover:bg-dark-gray-700"><%== link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"') %></span>
+		<% else -%>
+			
+		<% end -%>
+	</div>
+</nav>
