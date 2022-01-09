@@ -250,6 +250,8 @@ fr:
     updated: "Mis à jour le"
     announcement: "Annonce"
     announcements: "Annonces"
+    notification: "Notification"
+    notifications: "Notifications"
   ridings:
     held_riding: "Circonscription détenue"
     riding_details: "Détails de Circonscription"
@@ -319,3 +321,13 @@ fr:
     reports_step: "Si vous avez droit d'accès à des rapports pour votre ADC, vous pouvez y accéder ici."
     tools_title: "Outils"
     tools_step: "Accédez rapidement à tous vos outils."
+  notifications:
+    empty_placeholder: "No notifications"
+    empty: "No notifications"
+    empty_description: "You currently have no notifications"
+    announcement_notification:
+      title: "Super Cool Title"
+      message: "This is a test notification that is super long and I want to see how much will show up in the view. This is a second sentence, am I still here?"
+    update_bank_balance_notification:
+      title: "Time to update your bank balance"
+      message: "Your bank balance for %{riding} is out of date. Please update it."
