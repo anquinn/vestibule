@@ -7,3 +7,6 @@ import Alpine from 'alpinejs'
 window.Alpine = Alpine
  
 Alpine.start()
+
+import LocalTime from "local-time"
+require("local-time").start()

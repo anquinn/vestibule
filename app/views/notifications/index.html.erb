@@ -1,0 +1,19 @@
+<% content_for :page_title do %>
+  <%= t(".title") %>
+<% end %>
+
+<div class="bg-white shadow border border-gray-200 sm:rounded-lg dark:bg-dark-gray-800 dark:border-dark-gray-600">
+  <ul>
+    <%= render partial: "notifications/notification", collection: @notifications, cached: true %>
+  </ul>
+
+  <% if @notifications.empty? %>
+    <div class="px-4 py-3 text-gray-700 text-center"><%= t(".empty_placeholder") %></div>
+  <% end %>
+
+  <% if @pagy.pages > 1 %>
+    <div class="text-center mt-8">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+</div>

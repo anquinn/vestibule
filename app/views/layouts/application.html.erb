@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
@@ -115,6 +117,10 @@
               </div>
             </div>
             <div class="ml-2 flex items-center space-x-4 sm:ml-6 sm:space-x-4">
+
+              <% if user_signed_in? %>
+                <%= render "shared/notifications" %>
+              <% end %>
 
               <% if user_signed_in? && current_user.theme == "light" %>
                 <%= button_to theme_switch_users_path, class: "group p-1 rounded text-sm text-brand-medium font-bold hover:text-white hover:bg-brand", method: :patch, data: {"turbo":"false"} do  %>

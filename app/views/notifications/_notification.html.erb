@@ -1,0 +1,37 @@
+<% instance = notification.to_notification %>
+<%= link_to notification, data: {
+    notifications_target: "notification",
+    id: notification&.id,
+    read_at: notification&.read_at,
+    interacted_at: notification&.interacted_at,
+  },
+  class: "flex items-center px-4 py-3 hover:bg-gray-100 border-b last:border-b-0 first:rounded-t-lg last:rounded-b-lg dark:border-dark-gray-600 dark:hover:bg-dark-gray-700" do %>
+  <div class="flex-1">
+
+    <% if instance.respond_to?(:title) %>
+      <p class="mb-2 text-sm leading-5 font-medium text-gray-900 dark:text-dark-gray-300">
+        <%= instance.title %>
+      </p>
+
+      <p class="mb-2 text-sm leading-5 text-gray-500 dark:text-dark-gray-400">
+        <%= instance.message.truncate(120) %>
+      </p>
+
+    <% else %>
+      <p class="mb-2 text-sm leading-5 text-gray-900 dark:text-dark-gray-300">
+        <%= instance.message %>
+      </p>
+    <% end %>
+
+    
+
+    <p class="text-xs text-gray-600 dark:text-dark-gray-500"><%= local_time_ago notification&.created_at %></p>
+  </div>
+
+  <%# blue dot is toggled by CSS from the parent's data-interacted-at attribute presence %>
+  <% if instance.unread? %>
+    <div uninteracted class="flex-shrink-0">
+      <span class="inline-block w-2 h-2 ml-4 bg-blue-500 rounded-full"></span>
+    </div>
+  <% end %>
+<% end %>

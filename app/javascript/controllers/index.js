@@ -19,5 +19,11 @@ application.register("checkbox-select-all", CheckboxSelectAll)
 import Modal from "./modal_controller.js"
 application.register('modal', Modal)
 
+import Dropdown from "./dropdown_controller.js"
+application.register('dropdown', Dropdown)
+
 import Tooltip from "./tooltip_controller.js"
 application.register('tooltip', Tooltip)
+
+import Notifications from "./notifications_controller.js"
+application.register('notifications', Notifications)

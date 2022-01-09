@@ -1,0 +1,57 @@
+<% content_for :page_title do %>
+  Announcements
+<% end %>
+
+<% content_for :page_buttons do %>
+  <% if current_user.admin? %>
+    <%= link_to "New announcement", new_announcement_path, class: "inline-flex items-center px-4 py-2 border border-brand-dark rounded-md shadow-sm text-sm font-medium text-white bg-brand hover:bg-brand-medium focus:outline-none focus:ring-2 focus:ring-offset-2 ring-brand dark:bg-brand-medium dark:hover:bg-brand-dark dark:ring-brand-dark dark:ring-offset-dark-gray-900" %>
+  <% end %>
+<% end %>
+
+
+<div class="bg-white shadow overflow-hidden sm:rounded-md dark:bg-dark-gray-800 dark:shadow-highlight">
+  <ul role="list" class="divide-y divide-gray-200 dark:divide-dark-gray-600">
+    <% @announcements.each do |announcement| %>
+      <li>
+        <%= link_to announcement, class:"block hover:bg-gray-50 dark:hover:bg-dark-gray-700" do %>
+          <div class="px-4 py-4 flex items-center sm:px-6">
+            <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+              <div class="truncate">
+                <div class="flex text-sm">
+                  <p class="font-medium text-brand truncate"><%= announcement.title %></p>
+                </div>
+                <div class="mt-2 flex">
+                  <div class="flex items-center text-sm text-gray-500 dark:text-dark-gray-400">
+                    <!-- Heroicon name: solid/calendar -->
+                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-dark-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                    </svg>
+                    <p>
+                      <%= announcement.created_at.strftime("%B %d, %Y") %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-sm text-gray-900 dark:text-dark-gray-300">
+                <%= announcement.body.truncate(100) %>
+              </div>
+
+              <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
+                <div class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-brand hover:bg-brand-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand dark:bg-brand-dark dark:hover:bg-brand-medium">
+                  View announcement
+                </div>
+              </div>
+            </div>
+            <div class="ml-5 flex-shrink-0">
+              <!-- Heroicon name: solid/chevron-right -->
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

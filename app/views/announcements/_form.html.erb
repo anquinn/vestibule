@@ -1,0 +1,40 @@
+<%= form_with(model: announcement, data: { turbo_confirm: "Are you sure? This will send notifications to all users." }) do |form| %>
+  <%= render "shared/error_messages", resource: announcement %>
+
+  <div class="shadow overflow-hidden sm:rounded-md">
+    <div class="px-4 py-5 bg-white sm:p-6 dark:bg-dark-gray-800">
+
+      <div class="grid grid-cols-6 gap-6">
+        
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :title_en, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.text_field :title_en, class:"mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+        <div class="col-span-6 sm:col-span-3">
+          <%= form.label :title_fr, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.text_field :title_fr, class:"mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+        <div class="col-span-6">
+          <%= form.label :body_en, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.text_area :body_en, class:"mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+        <div class="col-span-6">
+          <%= form.label :body_fr, class:"block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+          <%= form.text_area :body_fr, class:"mt-1 shadow-sm focus:ring-brand focus:border-brand block w-full sm:text-sm border border-gray-300 rounded-md dark:bg-dark-gray-700 dark:border-dark-gray-600 dark:focus:border-brand-dark dark:focus:ring-brand-dark dark:text-dark-gray-300" %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-right">
+      <div class="form-group px-4 py-3 bg-gray-50 text-right sm:px-6 dark:bg-dark-gray-700">
+
+        <%= form.submit "Save", class:"inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-brand-medium ring-brand dark:bg-brand-dark dark:text-dark-gray-300 dark:focus:ring-brand-dark dark:hover:bg-brand-medium" %>
+
+      </div>
+  </div>
+  </div>
+<% end %>

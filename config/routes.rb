@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :announcements
   resources :tools
   resources :user_permissions
 
@@ -18,10 +19,16 @@ Rails.application.routes.draw do
 
   resources :ridings do
     resources :bank_balances, only: [:new, :create]
-    # member do
-    #   get 'bank_balance'
-    #   post 'bank_balance_update'
-    # end
+
+    get :voter_contact_stats_current, to: "voter_contact_stats#current"
+    get :voter_contact_stats_yesterday, to: "voter_contact_stats#yesterday"
+    get :voter_contact_stats_last_7, to: "voter_contact_stats#last_7"
+    get :voter_contact_stats_last_30, to: "voter_contact_stats#last_30"
+
+    get :volunteer_stats_current, to: "volunteer_stats#current"
+    get :volunteer_stats_yesterday, to: "volunteer_stats#yesterday"
+    get :volunteer_stats_last_7, to: "volunteer_stats#last_7"
+    get :volunteer_stats_last_30, to: "volunteer_stats#last_30"
   end
 
   resources :reports, only: [:index] do
@@ -32,13 +39,7 @@ Rails.application.routes.draw do
     end
   end
   
-  # get 'reports', to: 'reports#index'
-  # e
-  # get 'reports/field_organizer' do
-  #   collection do
-  #     
-  #   end
-  # end
+  resources :notifications, only: [:index, :show]
   
   
   root "ridings#index"

@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
+@import "components/general";
 @import "components/shepherd";
 @import "components/sorting";
 @import "components/animation";

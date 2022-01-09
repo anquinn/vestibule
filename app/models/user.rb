@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :user_user_permissions, dependent: :destroy
   has_many :user_permissions, through: :user_user_permissions
 
+  has_many :notifications, as: :recipient
+
   validates :first_name, :last_name, presence: true
 
   enum user_type: {

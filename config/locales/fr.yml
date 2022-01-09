@@ -248,6 +248,8 @@ fr:
     logout: "Déconnexion"
     actions: "Actions"
     updated: "Mis à jour le"
+    announcement: "Annonce"
+    announcements: "Annonces"
   ridings:
     held_riding: "Circonscription détenue"
     riding_details: "Détails de Circonscription"

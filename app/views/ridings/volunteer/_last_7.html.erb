@@ -1,0 +1,23 @@
+<%= turbo_frame_tag "volunteer_tab" do %>
+  <div>
+    <div class="mt-6">
+      <div class="flex items-end">
+        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-dark-gray-300 flex items-end">
+          <%= t("ridings.volunteers") %>
+        </h3>
+
+        <%= render partial: "shared/volunteer_filter_buttons", locals: { selected: 'last_7'} %>
+      </div>
+
+        <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.active_volunteers"), stat: number_with_delimiter(2, locale: current_user.preferred_language), icon: "users"} %>
+
+          <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.new_volunteers"), stat: number_with_delimiter(0, locale: current_user.preferred_language), icon: "user-add"} %>
+
+          <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.contact_later"), stat: number_with_delimiter(1, locale: current_user.preferred_language), icon: "user"} %>
+
+          <%= render partial: "shared/stat_block", locals: { stat_title: t("ridings.average_wait_time"), stat: t('datetime.distance_in_words.x_days', :count => 74).titleize, icon: "clock"} %>
+        </dl>
+    </div>
+  </div>
+<% end %>

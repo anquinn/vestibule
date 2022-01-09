@@ -34,12 +34,16 @@ if UserPermission.all.size == 0
 			permission.name = row["report_en"]
 		end
 
-		UserPermission.find_or_create_by(name: "Create Users") do |permission|
+		UserPermission.find_or_create_by(name: "System - Create Users") do |permission|
 			permission.name = "Create Users"
 		end
 
-		UserPermission.find_or_create_by(name: "Field Organizer") do |permission|
+		UserPermission.find_or_create_by(name: "System - Field Organizer") do |permission|
 			permission.name = "Field Organizer"
+		end
+
+		UserPermission.find_or_create_by(name: "System - Create Announcements") do |permission|
+			permission.name = "Create Announcements"
 		end
 
 	end

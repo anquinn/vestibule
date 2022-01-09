@@ -3,16 +3,15 @@
 class UserPolicy < ApplicationPolicy
   
   def index?
-    user.admin? || user.user_permissions.exists?(name: "Create Users")
+    user.admin? || user.user_permissions.exists?(name: "System - Create Users")
   end
 
   def show?
-    user.admin? || (user.user_permissions.exists?(name: "Create Users") && record.user_type != "admin")
+    user.admin? || (user.user_permissions.exists?(name: "System - Create Users") && record.user_type != "admin")
   end
 
   def create?
-    user.admin? || (user.user_permissions.exists?(name: "Create Users") && record.user_type != "admin")
-    # || user.user_user_permissions.map{|p| p.user_permission.name}.include? "Create Users"
+    user.admin? || (user.user_permissions.exists?(name: "System - Create Users") && record.user_type != "admin")
   end
 
   def new?
@@ -20,7 +19,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || (user.user_permissions.exists?(name: "Create Users") && record.user_type != "admin")
+    user.admin? || (user.user_permissions.exists?(name: "System - Create Users") && record.user_type != "admin")
   end
 
   def edit?
@@ -32,7 +31,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def impersonate?
-    user.admin? || (user.user_permissions.exists?(name: "Create Users") && record.user_type != "admin")
+    user.admin? || (user.user_permissions.exists?(name: "System - Create Users") && record.user_type != "admin")
   end
 
   def stop_impersonating?

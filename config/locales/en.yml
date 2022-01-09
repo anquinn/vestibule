@@ -267,6 +267,8 @@ en:
     tools: "Tools"
     logout: "Logout"
     actions: "Actions"
+    announcement: "Announcement"
+    announcements: "Announcements"
   ridings:
     held_riding: "Held riding"
     riding_details: "Riding Details"
@@ -337,3 +339,10 @@ en:
     reports_step: "If you have access to any reports for your EDA you can access them here."
     tools_title: "Tools"
     tools_step: "Quickly access all of your tools."
+  notifications:
+    announcement_notification:
+      title: "Super Cool Title"
+      message: "This is a test notification that is super long and I want to see how much will show up in the view. This is a second sentence, am I still here?"
+    update_bank_balance_notification:
+      title: "Time to update your bank balance"
+      message: "Your bank balance for %{riding} is out of date. Please update it."

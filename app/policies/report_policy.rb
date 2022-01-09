@@ -11,6 +11,6 @@ class ReportPolicy < Struct.new(:user, :report)
   end
 
   def field_organizer?
-    user.admin? or user.user_permissions.exists?(name: "Field Organizer")
+    user.admin? or user.user_permissions.exists?(name: "System - Field Organizer")
   end
 end

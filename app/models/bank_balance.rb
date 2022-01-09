@@ -6,4 +6,9 @@ class BankBalance < ApplicationRecord
     }
 
   validates :balance_cents, presence: true
+  before_save :clean_number
+
+  def clean_number
+    self.balance = self.balance.to_s.gsub(/[^0-9,.]/i, '')
+  end
 end
