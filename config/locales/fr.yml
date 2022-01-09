@@ -331,3 +331,6 @@ fr:
     update_bank_balance_notification:
       title: "Time to update your bank balance"
       message: "Your bank balance for %{riding} is out of date. Please update it."
+  announcements:
+    empty_placeholder: "No announcements"
+    empty_description: "There are currently no announcements"
