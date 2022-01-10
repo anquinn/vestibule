@@ -26,6 +26,8 @@ export default class extends Controller {
   showUnreadBadge() {
     if (this.hasBadgeTarget == false) { return }
     this.badgeTarget.classList.remove("hidden")
+    // mobile nav
+    document.getElementById("mobile-notifications").classList.remove("hidden")
   }
 
   hideUnreadBadge() {

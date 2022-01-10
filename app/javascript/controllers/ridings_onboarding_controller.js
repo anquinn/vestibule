@@ -59,7 +59,7 @@ export default class extends Controller {
 	  text: polyglot.t("locale_toggle_step"),
 	  attachTo: {
 	    element: '#locale_toggle',
-	    on: 'right'
+	    on: 'left'
 	  },
 	  popperOptions: {
 	  	modifiers: [{ name: 'offset', options: { offset: [0, 50] } }]

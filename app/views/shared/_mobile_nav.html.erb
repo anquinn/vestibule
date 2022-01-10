@@ -20,6 +20,15 @@
       <% end %>
     <% end %>
 
+    <%= link_to notifications_path, class: "text-red-100 hover:bg-brand-dark hover:text-white group py-2 px-3 rounded-md flex items-center text-sm font-medium dark:text-dark-gray-300" do %>
+
+      <svg class="text-brand-light group-hover:text-white mr-3 h-6 w-6 dark:text-dark-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+      </svg>
+      <span class=""><%= t("general.notifications") %></span>
+      <span data-notifications-target="badge" class="hidden notifications-badge relative top-0 right-0 block h-2 w-2 transform -translate-y-1/2 translate-x-1/2 rounded-full text-white shadow-solid bg-brand group-hover:bg-white" id="mobile-notifications"></span>
+    <% end %>
+
     <% if policy(:announcement).create? %>
       <%= link_to announcements_path, class: "text-red-100 hover:bg-brand-dark hover:text-white group py-2 px-3 rounded-md flex items-center text-sm font-medium dark:text-dark-gray-300" do %>
 

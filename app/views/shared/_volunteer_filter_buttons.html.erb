@@ -1,4 +1,4 @@
-<span class="ml-6 relative z-0 inline-flex shadow-sm rounded-md">
+<span class="mt-2 sm:mt-0 sm:ml-6 relative z-0 inline-flex shadow-sm rounded-md">
   <%= link_to "Current", riding_volunteer_stats_current_path(@riding), class:"relative inline-flex items-center px-2 py-1 rounded-l-md border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand dark:bg-dark-gray-800 dark:border-dark-gray-600 dark:text-dark-gray-300 dark:hover:bg-dark-gray-700 #{'selected_button' if selected == 'current'}" %>
 
   <%= link_to "Yesterday", riding_volunteer_stats_yesterday_path(@riding), class:"-ml-px relative inline-flex items-center px-2 py-1 border border-gray-300 bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand dark:bg-dark-gray-800 dark:border-dark-gray-600 dark:text-dark-gray-300 dark:hover:bg-dark-gray-700 #{'selected_button' if selected == 'yesterday'}" %>

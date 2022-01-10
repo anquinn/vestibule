@@ -1,9 +1,9 @@
-<%= tag.div class: "z-10 inline-flex items-center align-middle leading-none rounded no-underline text-gray-700 hover:text-gray-800 hover:bg-white",
+<%= tag.div class: "hidden z-10 md:inline-flex items-center align-middle leading-none rounded no-underline text-gray-700 hover:text-gray-800 hover:bg-white",
   data: {
     controller: "notifications",
     notifications_account_unread_value: @account_unread,
     notifications_total_unread_value: @total_unread,
-  } do %>
+  }, id: "notifications_nav" do %>
 
   <div class="relative" data-controller="dropdown">
     <%# Marks all notifications as read when menu opens by default. Remove the notifications Stimulus actions to disable this. %>
@@ -21,7 +21,7 @@
     <% end %>
 
     <div data-dropdown-target="menu" class="lg:absolute lg:right-0 mt-2 hidden z-20">
-      <div class="bg-white shadow rounded border border-gray-200 overflow-hidden sm:w-96 dark:bg-dark-gray-800 dark:border-dark-gray-600">
+      <div class="bg-white shadow rounded-md border border-gray-200 overflow-hidden sm:w-96 dark:bg-dark-gray-800 dark:border-dark-gray-600">
         <%= turbo_frame_tag "notifications", loading: :lazy, target: :_top, src: notifications_path, data: { notifications_target: "list" } do %>
           <p class="p-4"><i class="fas fa-circle-notch fa-spin text-gray-400 mr-1"></i> Loading...</p>
         <% end %>
