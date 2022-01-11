@@ -345,9 +345,7 @@ en:
     empty_placeholder: "No notifications"
     empty: "No notifications"
     empty_description: "You currently have no notifications"
-    announcement_notification:
-      title: "Super Cool Title"
-      message: "This is a test notification that is super long and I want to see how much will show up in the view. This is a second sentence, am I still here?"
+    see_more: "See more notifications"
     update_bank_balance_notification:
       title: "Time to update your bank balance"
       message: "Your bank balance for %{riding} is out of date. Please update it."

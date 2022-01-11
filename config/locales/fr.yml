@@ -322,15 +322,13 @@ fr:
     tools_title: "Outils"
     tools_step: "Accédez rapidement à tous vos outils."
   notifications:
-    empty_placeholder: "No notifications"
-    empty: "No notifications"
-    empty_description: "You currently have no notifications"
-    announcement_notification:
-      title: "Super Cool Title"
-      message: "This is a test notification that is super long and I want to see how much will show up in the view. This is a second sentence, am I still here?"
+    empty_placeholder: "Aucune notification"
+    empty: "Aucune notification"
+    empty_description: "Vous n’avez aucune notification"
+    see_more: "Voir toutes les notifications"
     update_bank_balance_notification:
-      title: "Time to update your bank balance"
-      message: "Your bank balance for %{riding} is out of date. Please update it."
+      title: "Il est temps de mettre à jour votre solde bancaire"
+      message: "Votre solde bancaire pour %{riding} n’est plus à jour. S’il-vous-plaît actualiser votre solde."
   announcements:
-    empty_placeholder: "No announcements"
-    empty_description: "There are currently no announcements"
+    empty_placeholder: "Aucune annonce"
+    empty_description: "Il n’y a aucune annonce"

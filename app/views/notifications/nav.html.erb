@@ -2,7 +2,7 @@
   <%= render partial: "notifications/notification", collection: @notifications.limit(3), cached: true %>
 
   <% if @notifications.any? %>
-    <%= link_to "See more notifications", notifications_path, class: "block px-4 py-3 text-sm text-gray-700 font-medium hover:bg-gray-100 dark:bg-dark-gray-800 dark:text-dark-gray-300" %>
+    <%= link_to t("notifications.see_more"), notifications_path, class: "block px-4 py-3 text-sm text-gray-700 font-medium hover:bg-gray-100 dark:bg-dark-gray-800 dark:text-dark-gray-300" %>
   <% end %>
 
   <div class="hidden p-2 text-center only:block text-sm">
