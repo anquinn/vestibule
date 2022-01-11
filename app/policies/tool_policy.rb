@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ToolPolicy < Struct.new(:user, :report)
+class ToolPolicy < ApplicationPolicy
 
   def index?
     user.admin?
@@ -29,7 +29,4 @@ class ToolPolicy < Struct.new(:user, :report)
   def destroy?
     user.admin?
   end
-
-
-
 end

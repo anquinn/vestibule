@@ -28,7 +28,7 @@ class ToolsController < ApplicationController
 
     respond_to do |format|
       if @tool.save
-        format.html { redirect_to @tool, notice: "Tool was successfully created." }
+        format.html { redirect_to tools_path , notice: "Tool was successfully created." }
         format.json { render :show, status: :created, location: @tool }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class ToolsController < ApplicationController
     @tool.destroy
     authorize @tool
     respond_to do |format|
-      format.html { redirect_to tools_url, notice: "Tool was successfully destroyed." }
+      format.html { redirect_to tools_url, status: :see_other, notice: "Tool was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class ToolsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tool_params
-      params.require(:tool).permit(:name_en, :name_fr, :description_en, :description_fr, :link, :icon)
+      params.require(:tool).permit(:name_en, :name_fr, :description_en, :description_fr, :link_en, :link_fr, :icon)
     end
 end
