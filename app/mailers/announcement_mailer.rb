@@ -3,6 +3,10 @@ class AnnouncementMailer < ApplicationMailer
         @first_name = params[:recipient].first_name
         @subject = params[:announcement].title
         @content = params[:announcement].body
-        mail(to: params[:recipient].email, from: "Liberalist Helpdesk <campaign@liberal.ca>", subject: @subject)
+        @email = params[:recipient].email
+
+        I18n.with_locale(params[:recipient].preferred_language) do
+        	mail(to: @email, from: "Liberalist Helpdesk <campaign@liberal.ca>", subject: @subject)
+        end
 	end
 end

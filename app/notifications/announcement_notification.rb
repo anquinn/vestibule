@@ -26,12 +26,4 @@ class AnnouncementNotification < Noticed::Base
   def url
     announcement_path(params[:announcement])
   end
-
-  def format_for_email
-    first_name = recipient.first_name
-    subject = params[:announcement].title
-    content = params[:announcement].body
-    email = recipient.email
-  end
-
 end
